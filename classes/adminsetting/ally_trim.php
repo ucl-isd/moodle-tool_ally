@@ -24,6 +24,8 @@
 
 namespace tool_ally\adminsetting;
 
+require_once($CFG->dirroot . '/lib/adminlib.php');
+
 /**
  * No setting - just heading and text.
  *
