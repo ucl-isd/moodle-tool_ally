@@ -27,6 +27,7 @@ namespace tool_ally;
 use tool_ally\auto_config_resolver;
 use tool_ally\auto_configurator;
 use tool_ally\auto_config;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * Testcase class for the tool_ally\auto_configurator class.
@@ -36,6 +37,7 @@ use tool_ally\auto_config;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class auto_configurator_test extends \advanced_testcase {
+    use ProphecyTrait;
 
     public function setUp(): void {
         $this->resetAfterTest(true);
