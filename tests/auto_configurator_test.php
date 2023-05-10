@@ -43,6 +43,9 @@ class auto_configurator_test extends \advanced_testcase {
         $this->resetAfterTest(true);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_configure_settings() {
         $configs = [
             'secret' => 'password!',
@@ -64,6 +67,9 @@ class auto_configurator_test extends \advanced_testcase {
         }
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_configure_settings_invalid_setting() {
         $configs = [
             'secret' => 'password!',
@@ -89,6 +95,9 @@ class auto_configurator_test extends \advanced_testcase {
         }
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_configure_webservices() {
         $wsconfig = new auto_config();
 

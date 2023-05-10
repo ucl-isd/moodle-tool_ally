@@ -29,6 +29,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once(__DIR__ . "/../../../../webservice/lib.php");
 require_once(__DIR__ . "/../../../../user/lib.php");
+require_once("$CFG->libdir/externallib.php");
 
 
 class auto_config {
