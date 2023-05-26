@@ -25,6 +25,9 @@ namespace tool_ally;
 use tool_ally\auto_config;
 
 class auto_config_test extends \advanced_testcase {
+    /**
+     * @runInSeparateProcess
+     */
     public function test_auto_config() {
         global $DB;
 
@@ -42,6 +45,9 @@ class auto_config_test extends \advanced_testcase {
         $this->assertCount(1, $dataprofile);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_auto_config_update_user() {
         global $DB;
 
