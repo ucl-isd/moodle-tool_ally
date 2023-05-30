@@ -46,6 +46,8 @@ class webservice_replace_content_test extends abstract_testcase {
 
     /**
      * Test the web service when used to replace a single content item.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_course_summary() {
         global $DB;
@@ -60,6 +62,9 @@ class webservice_replace_content_test extends abstract_testcase {
         $this->assertEquals($coursesummaryreplaced, $course->summary);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_course_section() {
         global $DB;
 
@@ -88,6 +93,8 @@ class webservice_replace_content_test extends abstract_testcase {
      * @throws invalid_parameter_exception
      * @throws required_capability_exception
      * @throws restricted_context_exception
+     *
+     * @runInSeparateProcess
      */
     private function module_replace_test($modname, $table, $field = 'intro') {
         global $DB;
@@ -107,10 +114,16 @@ class webservice_replace_content_test extends abstract_testcase {
         return $generatedmod; // Sometimes the generated mod has more data than the db row - e.g. cmid.
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_assign() {
         $this->module_replace_test('assign', 'assign');
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_book() {
         global $DB;
 
@@ -136,6 +149,9 @@ class webservice_replace_content_test extends abstract_testcase {
         $this->assertEquals($contentreplaced, $chapter->content);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_forum() {
         global $USER, $DB;
 
@@ -170,6 +186,9 @@ class webservice_replace_content_test extends abstract_testcase {
         $this->assertEquals($postmessagereplaced, $post->message);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_glossary() {
         global $USER, $DB;
 
@@ -192,10 +211,16 @@ class webservice_replace_content_test extends abstract_testcase {
         $this->assertEquals($definitionreplaced, $entry->definition);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_label() {
         $this->module_replace_test('label', 'label');
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_lesson() {
         global $CFG, $DB;
 
@@ -219,11 +244,17 @@ class webservice_replace_content_test extends abstract_testcase {
         $this->assertEquals($contentreplaced, $page->contents);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_page() {
         $this->module_replace_test('page', 'page');
         $this->module_replace_test('page', 'page', 'content');
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_block_html() {
         global $DB;
 

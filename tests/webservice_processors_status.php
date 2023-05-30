@@ -37,10 +37,18 @@ require_once(__DIR__.'/abstract_testcase.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class webservice_processors_status extends abstract_testcase {
+
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_return() {
         $returns = processors_status::service_returns();
         $this->assertTrue($returns instanceof \external_single_structure);
     }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service() {
 
         // Save timestamp to compare to oldest event created.

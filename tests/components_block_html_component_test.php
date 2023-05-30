@@ -80,7 +80,7 @@ class components_block_html_component_test extends abstract_testcase {
         $this->component = local_content::component_instance('block_html');
     }
 
-    private function add_block( array $data = null) : \block_html {
+    private function add_block( array $data = null) : \block_calendar_upcoming {
         global $USER;
 
         $sctc = new search_content_test();
@@ -115,6 +115,9 @@ class components_block_html_component_test extends abstract_testcase {
         return end($blocks);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_list_content() {
         $this->setAdminUser();
         $block = $this->add_block();

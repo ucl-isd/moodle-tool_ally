@@ -91,6 +91,9 @@ class components_page_component_test extends abstract_testcase {
         $this->component = local_content::component_instance('page');
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_list_intro_and_content() {
         $this->setAdminUser();
         $contentitems = course_content::service([$this->course->id]);

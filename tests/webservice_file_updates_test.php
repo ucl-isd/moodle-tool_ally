@@ -40,6 +40,8 @@ require_once(__DIR__.'/abstract_testcase.php');
 class webservice_file_updates_test extends abstract_testcase {
     /**
      * Test the web service.
+     *
+     * @runInSeparateProcess
      */
     public function test_service() {
         global $DB;

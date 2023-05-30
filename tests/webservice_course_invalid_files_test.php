@@ -41,6 +41,8 @@ require_once(__DIR__.'/abstract_testcase.php');
 class webservice_course_invalid_files_test extends abstract_testcase {
     /**
      * Test the web service.
+     *
+     * @runInSeparateProcess
      */
     public function test_service() {
         $this->resetAfterTest();

@@ -44,6 +44,9 @@ class local_file_test extends \advanced_testcase {
         local_file::generate_wspluginfile_signature('fakehash');
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_generate_wspluginfile_signature() {
         $this->resetAfterTest();
         // Test method successful when configured.

@@ -39,6 +39,8 @@ require_once(__DIR__.'/abstract_testcase.php');
 class webservice_version_info_test extends abstract_testcase {
     /**
      * Test the web service.
+     *
+     * @runInSeparateProcess
      */
     public function test_service() {
         $this->resetAfterTest();
@@ -62,6 +64,9 @@ class webservice_version_info_test extends abstract_testcase {
         $this->assertNotEmpty($info->report_allylti);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_warn_on_site_policy_not_accepted() {
         $this->resetAfterTest();
         global $DB, $CFG;

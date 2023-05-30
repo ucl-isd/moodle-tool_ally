@@ -42,6 +42,8 @@ class webservice_file_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get a resource file.
+     *
+     * @runInSeparateProcess
      */
     public function test_service() {
         global $CFG;
@@ -79,6 +81,8 @@ class webservice_file_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get a forum post attachment.
+     *
+     * @runInSeparateProcess
      */
     public function test_forum_post() {
         global $CFG;
@@ -146,6 +150,8 @@ class webservice_file_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get a forum main page attachment.
+     *
+     * @runInSeparateProcess
      */
     public function test_forum_main_page() {
         global $CFG;
@@ -200,6 +206,9 @@ class webservice_file_test extends abstract_testcase {
         $this->assertEquals($CFG->wwwroot.'/mod/forum/view.php?id='.$forum->cmid, $file['location']);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_unwhitelisted_file_component() {
 
         $this->resetAfterTest();
@@ -231,6 +240,8 @@ class webservice_file_test extends abstract_testcase {
 
     /**
      * Test if the file in use setting properly changes the response of this service.
+     *
+     * @runInSeparateProcess
      */
     public function test_files_in_use() {
         global $DB;

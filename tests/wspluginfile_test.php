@@ -87,6 +87,9 @@ class wspluginfile_test extends abstract_testcase {
         $this->allywebuser = local::get_ally_web_user();;
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_validate_wspluginfile_signature_signature_invalid_exception() {
         $this->auto_config();
 
@@ -100,6 +103,9 @@ class wspluginfile_test extends abstract_testcase {
         $this->wspluginfile->validate_wspluginfile_signature($signature, $iat, $pathnamehash);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_validate_wspluginfile_signature_signature() {
         $this->auto_config();
 
@@ -132,6 +138,9 @@ class wspluginfile_test extends abstract_testcase {
         return [$wstoken, $iat, $pathnamehash, $file];
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_get_file_by_signature() {
         list ($wstoken, $iat, $pathnamehash, $file) = $this->prepare_get_file();
 
@@ -141,6 +150,9 @@ class wspluginfile_test extends abstract_testcase {
         $this->assertEquals($file, $recoveredfile);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_get_file_by_token() {
         list ($wstoken, $iat, $pathnamehash, $file) = $this->prepare_get_file();
 

@@ -72,6 +72,8 @@ class webservice_course_files_test extends abstract_testcase {
     }
     /**
      * Test the web service.
+     *
+     * @runInSeparateProcess
      */
     public function test_service() {
 
@@ -89,6 +91,9 @@ class webservice_course_files_test extends abstract_testcase {
         $this->assertEquals($expectedfile->get_timemodified(), local::iso_8601_to_timestamp($file['timemodified']));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_section_deleted() {
         global $DB;
         // Add file to a soon to be deleted section.
@@ -135,6 +140,9 @@ class webservice_course_files_test extends abstract_testcase {
         $this->assertEquals($expectedfile->get_timemodified(), local::iso_8601_to_timestamp($file['timemodified']));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_resource_soft_deleted() {
         global $DB;
 
@@ -149,6 +157,8 @@ class webservice_course_files_test extends abstract_testcase {
 
     /**
      * Test that the files in use setting works with the course files service.
+     *
+     * @runInSeparateProcess
      */
     public function test_files_in_use() {
         global $DB;

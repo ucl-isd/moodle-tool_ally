@@ -75,6 +75,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test the web service.
+     *
+     * @runInSeparateProcess
      */
     public function test_service() {
         $datagen = $this->getDataGenerator();
@@ -99,6 +101,9 @@ class webservice_replace_file_test extends abstract_testcase {
         $this->assertSame($file->get_userid(), null);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_invalid_user() {
         $otheruser = $this->getDataGenerator()->create_user();
 
@@ -119,6 +124,9 @@ class webservice_replace_file_test extends abstract_testcase {
         $this->assertSame($file->get_content(), $newfile->get_content());
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_invalid_file() {
         // Can use fake as file check will fail before it is used.
         $fakeitemid = '123';
@@ -130,6 +138,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within label module intro.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_label_html() {
         global $DB;
@@ -162,6 +172,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within page module intro.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_page_html() {
         global $DB;
@@ -200,6 +212,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within course summary.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_course_html() {
         global $DB;
@@ -228,6 +242,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within course section html.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_course_section_html() {
         global $DB;
@@ -260,6 +276,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within course section html.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_block_html() {
         global $DB;
@@ -333,6 +351,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within forum module intro / discussion / posts.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_forum_html($forumtype = 'forum') {
         global $DB;
@@ -412,6 +432,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within hsuforum module intro / discussion / posts.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_hsuforum_html() {
         global $CFG;
@@ -422,6 +444,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within questions.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_question_html() {
         global $DB;
@@ -469,6 +493,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within questions.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_question_html_multichoice() {
         global $DB;
@@ -601,6 +627,15 @@ class webservice_replace_file_test extends abstract_testcase {
         $this->assert_file_processed_in_text($ans2->feedback);
     }
 
+    /**
+     * Test ddmatch html service qtype
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     *
+     * @runInSeparateProcess
+     */
     public function test_service_qtype_ddmatch_html() {
         global $CFG, $DB, $USER;
 
@@ -761,6 +796,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within lesson module intro / pages.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_lesson_html() {
         global $DB;
@@ -805,6 +842,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing files within glossary module intro / pages.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_glossary_html() {
         global $DB;
@@ -850,6 +889,8 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Test replacing file where filename already exists.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_replace_existing_filename() {
         global $DB;

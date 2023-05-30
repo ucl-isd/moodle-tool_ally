@@ -39,6 +39,9 @@ use tool_ally\webservice\courses;
  */
 class webservice_courses_testcase extends \externallib_advanced_testcase {
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service() {
         $this->resetAfterTest();
         $roleid = $this->assignUserCapability('moodle/course:view', \context_system::instance()->id);

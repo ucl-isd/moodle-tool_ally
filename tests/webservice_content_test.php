@@ -39,12 +39,19 @@ require_once(__DIR__.'/abstract_testcase.php');
  */
 class webservice_content_test extends abstract_testcase {
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_invalid_component() {
         $this->resetAfterTest();
         $this->setAdminUser();
         $this->expectExceptionMessage('Invalid component identifier');
         content::service(1, 'aninvalidcomponent', 'anytable', 'anyfield');
     }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function test_invalid_table() {
         $this->resetAfterTest();
         $this->setAdminUser();
@@ -52,6 +59,10 @@ class webservice_content_test extends abstract_testcase {
         $this->expectExceptionMessage('Invalid component identifier');
         content::service($course->id, 'course', 'invalidtable', 'summary');
     }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function test_invalid_field() {
         $this->resetAfterTest();
         $this->setAdminUser();
@@ -59,6 +70,10 @@ class webservice_content_test extends abstract_testcase {
         $this->expectExceptionMessage('Invalid component identifier');
         content::service($course->id, 'course', 'course', 'invalidfield');
     }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function test_invalid_id() {
         $this->resetAfterTest();
         $this->setAdminUser();
@@ -69,6 +84,8 @@ class webservice_content_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get a single course summary content item.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_course_summary() {
 
@@ -100,6 +117,8 @@ class webservice_content_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get a single course section content item.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_course_section() {
         global $DB;
@@ -214,6 +233,8 @@ class webservice_content_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get a label content item.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_label_content() {
         $this->main_module_content_test('label', 'label');
@@ -221,6 +242,8 @@ class webservice_content_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get an assign content item.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_assign_content() {
         $this->main_module_content_test('assign', 'assign');
@@ -228,6 +251,8 @@ class webservice_content_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get forum content items.
+     *
+     * @runInSeparateProcess
      */
     public function test_service_forum_content($forumtype = 'forum') {
         $forum = $this->main_module_content_test($forumtype, $forumtype);
@@ -271,6 +296,9 @@ class webservice_content_test extends abstract_testcase {
         $this->assertEquals($expected, $content);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_hsuforum_content() {
         global $CFG;
         if (file_exists($CFG->dirroot.'/mod/hsuforum')) {
@@ -278,11 +306,17 @@ class webservice_content_test extends abstract_testcase {
         }
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_page_content() {
         $this->main_module_content_test('page', 'page');
         $this->main_module_content_test('page', 'page', 'content');
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_lesson_content() {
         global $DB;
 
@@ -317,6 +351,9 @@ class webservice_content_test extends abstract_testcase {
         $this->assertEquals($expected, $content);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_block_html_content() {
         $this->resetAfterTest();
 
@@ -348,6 +385,9 @@ class webservice_content_test extends abstract_testcase {
         $this->assertEquals($expected, $content);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_module_wrong_course() {
         global $DB, $CFG;
         $this->resetAfterTest();

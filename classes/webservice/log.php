@@ -24,6 +24,7 @@
 
 namespace tool_ally\webservice;
 
+use core_external\external_api;
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
@@ -37,7 +38,7 @@ require_once(__DIR__.'/../../../../../lib/externallib.php');
  * @copyright Copyright (c) 2018 Open LMS (https://www.openlms.net)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class log extends \external_api {
+class log extends external_api {
     use user_fill_from_context_error;
 
     /**

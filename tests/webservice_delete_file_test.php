@@ -41,6 +41,7 @@ class webservice_delete_file_test extends abstract_testcase {
     /**
      * Test the web service.
      *
+     * @runInSeparateProcess
      */
     public function test_service() {
         global $DB;
@@ -72,6 +73,9 @@ class webservice_delete_file_test extends abstract_testcase {
         $this->get_resource_file($resource);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_invalid_user() {
         $this->resetAfterTest();
 
@@ -93,6 +97,9 @@ class webservice_delete_file_test extends abstract_testcase {
         $this->assertInstanceOf(\stored_file, $this->get_resource_file($resource));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_service_invalid_file() {
         global $DB;
 

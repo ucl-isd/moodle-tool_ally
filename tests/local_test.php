@@ -76,6 +76,9 @@ class local_test extends \advanced_testcase {
         local::get_ws_token();
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_get_ws_token() {
         $this->resetAfterTest();
         // Test token generated successfully when configured.

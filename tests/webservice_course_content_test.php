@@ -123,6 +123,8 @@ class webservice_course_content_test extends abstract_testcase {
 
     /**
      * Test the web service when used to get course content items.
+     *
+     * @runInSeparateProcess
      */
     public function test_service() {
         global $DB, $CFG;
