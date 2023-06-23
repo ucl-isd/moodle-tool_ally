@@ -101,6 +101,11 @@ class components_lesson_component_test extends abstract_testcase {
     }
 
 
+    /**
+     * test get all html content items
+     *
+     * @return void
+     */
     public function test_get_all_html_content_items() {
         $contentitems = $this->component->get_all_html_content($this->lesson->id);
 
@@ -115,21 +120,45 @@ class components_lesson_component_test extends abstract_testcase {
 
     }
 
+    /**
+     * test resolve module instance id from lesson
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_lesson() {
         $instanceid = $this->component->resolve_module_instance_id('lesson', $this->lesson->id);
         $this->assertEquals($this->lesson->id, $instanceid);
     }
 
+    /**
+     * test resolve module instance id from page
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_page() {
         $instanceid = $this->component->resolve_module_instance_id('lesson_pages', $this->lessonpage->id);
         $this->assertEquals($this->lesson->id, $instanceid);
     }
 
+    /**
+     * test resolve module instance id from question
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_question() {
         $instanceid = $this->component->resolve_module_instance_id('lesson_pages', $this->lessonquestion->id);
         $this->assertEquals($this->lesson->id, $instanceid);
     }
 
+    /**
+     * test resolve module instance id from answer
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_answer() {
         global $DB;
 
@@ -140,6 +169,12 @@ class components_lesson_component_test extends abstract_testcase {
         }
     }
 
+    /**
+     * test get all course annotation maps
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_get_all_course_annotation_maps() {
         global $DB;
 
@@ -158,6 +193,9 @@ class components_lesson_component_test extends abstract_testcase {
 
     /**
      * Test if file in use detection is working with this module.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_check_file_in_use() {
         global $DB;

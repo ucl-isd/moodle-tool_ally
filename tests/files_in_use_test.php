@@ -78,6 +78,9 @@ class files_in_use_test extends abstract_testcase {
 
     /**
      * Test if file in use detection is working.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_check_file_in_use() {
         global $DB;

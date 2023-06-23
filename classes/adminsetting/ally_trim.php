@@ -24,6 +24,8 @@
 
 namespace tool_ally\adminsetting;
 
+defined('MOODLE_INTERNAL') || die();
+
 require_once($CFG->dirroot . '/lib/adminlib.php');
 
 /**
@@ -34,7 +36,7 @@ require_once($CFG->dirroot . '/lib/adminlib.php');
 class ally_trim extends \admin_setting_configtext {
 
     public function write_setting($data) {
-        if ($this->paramtype === PARAM_INT and $data === '') {
+        if ($this->paramtype === PARAM_INT && $data === '') {
             // Do not complain if '' used instead of 0.
             $data = 0;
         }

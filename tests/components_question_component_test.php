@@ -88,11 +88,21 @@ class components_question_component_test extends abstract_testcase {
         $this->component = local_content::component_instance('question');
     }
 
+    /**
+     * test component type
+     *
+     * @return void
+     */
     public function test_component_type() {
         $type = question_component::component_type();
         $this->assertEquals(component_base::TYPE_CORE, $type);
     }
 
+    /**
+     * test fileurlproperties
+     *
+     * @return void
+     */
     public function test_fileurlproperties() {
         $pluginfileurl = 'http://moodle.test/pluginfile.php/16/question/questiontext/1/1/1/test.odt';
         $urlprops = question_component::fileurlproperties($pluginfileurl);
@@ -104,6 +114,11 @@ class components_question_component_test extends abstract_testcase {
         $this->assertEquals('test.odt', $urlprops->filename);
     }
 
+    /**
+     * test get question
+     *
+     * @return void
+     */
     public function test_get_question() {
         $quest = \phpunit_util::call_internal_method(
             $this->component,
@@ -116,14 +131,29 @@ class components_question_component_test extends abstract_testcase {
         $this->assertEquals($this->quest1->idnumber, $quest->idnumber);
     }
 
+    /**
+     * test list intro and content
+     *
+     * @return void
+     */
     public function test_list_intro_and_content() {
         $this->markTestSkipped('HTML content not yet supported');
     }
 
+    /**
+     * test get all html content
+     *
+     * @return void
+     */
     public function test_get_all_html_content() {
         $this->markTestSkipped('HTML content not yet supported');
     }
 
+    /**
+     * test get all course annotation maps
+     *
+     * @return void
+     */
     public function test_get_all_course_annotation_maps() {
         $this->markTestSkipped('HTML content not yet supported');
     }

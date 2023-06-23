@@ -35,7 +35,12 @@ use tool_ally\auto_config;
  */
 class local_file_test extends \advanced_testcase {
 
-
+    /**
+     * test generate wspluginfile signature invalid config
+     *
+     * @return void
+     * @throws \webservice_access_exception
+     */
     public function test_generate_wspluginfile_signature_invalid_config() {
         // Test failure without ally_webuser / valid configuration.
         $expectedmsg = 'Access control exception (Ally web user (ally_webuser) does not exist.';
@@ -45,7 +50,11 @@ class local_file_test extends \advanced_testcase {
     }
 
     /**
+     * test generate wspluginfile signature
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \webservice_access_exception
      */
     public function test_generate_wspluginfile_signature() {
         $this->resetAfterTest();
@@ -61,6 +70,11 @@ class local_file_test extends \advanced_testcase {
         $this->assertNotEmpty($signature->signature);
     }
 
+    /**
+     * test get fileurlproperties
+     *
+     * @return void
+     */
     public function test_get_fileurlproperties() {
         global $CFG;
         $this->resetAfterTest();

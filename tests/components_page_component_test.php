@@ -24,6 +24,8 @@
  */
 namespace tool_ally;
 
+use context_course;
+use stdClass;
 use tool_ally\local_content;
 use tool_ally\componentsupport\glossary_component;
 use tool_ally\testing\traits\component_assertions;
@@ -92,7 +94,11 @@ class components_page_component_test extends abstract_testcase {
     }
 
     /**
+     * test list intro and content
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_list_intro_and_content() {
         $this->setAdminUser();
@@ -103,6 +109,11 @@ class components_page_component_test extends abstract_testcase {
         $this->assert_component_is_in_array($component, $contentitems);
     }
 
+    /**
+     * test get all html content
+     *
+     * @return void
+     */
     public function test_get_all_html_content() {
         $items = local_content::get_all_html_content($this->page->id, 'page');
         $componentcontent = new component_content(
@@ -111,12 +122,24 @@ class components_page_component_test extends abstract_testcase {
         $this->assertTrue($this->component_content_is_in_array($componentcontent, $items));
     }
 
+    /**
+     * test resolve module instance id
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id() {
         $this->setAdminUser();
         $instanceid = $this->component->resolve_module_instance_id('page', $this->page->id);
         $this->assertEquals($this->page->id, $instanceid);
     }
 
+    /**
+     * test get all course annotation maps
+     *
+     * @return void
+     * @throws \moodle_exception
+     */
     public function test_get_all_course_annotation_maps() {
         $cis = $this->component->get_annotation_maps($this->course->id);
         $this->assertEquals('page:page:intro:' . $this->page->id, reset($cis['intros']));
@@ -140,6 +163,8 @@ class components_page_component_test extends abstract_testcase {
 
     /**
      * Test if file in use detection is working with this module.
+     *
+     * @return void
      */
     public function test_check_file_in_use() {
         $context = \context_module::instance($this->page->cmid);

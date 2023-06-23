@@ -23,6 +23,8 @@
  */
 namespace tool_ally;
 
+use stdClass;
+use stored_file;
 use tool_ally\local;
 use tool_ally\webservice\course_files;
 
@@ -74,6 +76,8 @@ class webservice_course_files_test extends abstract_testcase {
      * Test the web service.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \invalid_response_exception
      */
     public function test_service() {
 
@@ -92,7 +96,15 @@ class webservice_course_files_test extends abstract_testcase {
     }
 
     /**
+     * test service section deleted
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \invalid_response_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_service_section_deleted() {
         global $DB;
@@ -141,7 +153,13 @@ class webservice_course_files_test extends abstract_testcase {
     }
 
     /**
+     * test service resource soft deleted
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \invalid_response_exception
      */
     public function test_service_resource_soft_deleted() {
         global $DB;
@@ -159,6 +177,9 @@ class webservice_course_files_test extends abstract_testcase {
      * Test that the files in use setting works with the course files service.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \invalid_response_exception
      */
     public function test_files_in_use() {
         global $DB;

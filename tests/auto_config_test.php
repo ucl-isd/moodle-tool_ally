@@ -26,7 +26,11 @@ use tool_ally\auto_config;
 
 class auto_config_test extends \advanced_testcase {
     /**
+     * test auto config
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_auto_config() {
         global $DB;
@@ -46,7 +50,11 @@ class auto_config_test extends \advanced_testcase {
     }
 
     /**
+     * test auto config update user
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_auto_config_update_user() {
         global $DB;

@@ -125,6 +125,9 @@ class webservice_course_content_test extends abstract_testcase {
      * Test the web service when used to get course content items.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_service() {
         global $DB, $CFG;

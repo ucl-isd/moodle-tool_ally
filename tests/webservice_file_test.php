@@ -44,6 +44,10 @@ class webservice_file_test extends abstract_testcase {
      * Test the web service when used to get a resource file.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \invalid_response_exception
      */
     public function test_service() {
         global $CFG;
@@ -83,6 +87,11 @@ class webservice_file_test extends abstract_testcase {
      * Test the web service when used to get a forum post attachment.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \invalid_response_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_forum_post() {
         global $CFG;
@@ -152,6 +161,11 @@ class webservice_file_test extends abstract_testcase {
      * Test the web service when used to get a forum main page attachment.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \invalid_response_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_forum_main_page() {
         global $CFG;
@@ -207,7 +221,14 @@ class webservice_file_test extends abstract_testcase {
     }
 
     /**
+     * test unwhitelisted file component
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_unwhitelisted_file_component() {
 
@@ -242,6 +263,8 @@ class webservice_file_test extends abstract_testcase {
      * Test if the file in use setting properly changes the response of this service.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_files_in_use() {
         global $DB;

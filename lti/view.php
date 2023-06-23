@@ -30,7 +30,7 @@ require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->dirroot . '/mod/lti/locallib.php');
 
 $undertest = defined('BEHAT_SITE_RUNNING') || PHPUNIT_TEST;
-if (!$undertest and is_callable('mr_off') and mr_off('report_allylti', '_MR_MISC')) {
+if (!$undertest && is_callable('mr_off') && mr_off('report_allylti', '_MR_MISC')) {
     throw new moodle_exception('generalexceptionmessage', 'error', '', get_string('notenabled', 'report_allylti'));
 }
 

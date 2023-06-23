@@ -92,6 +92,16 @@ class components_book_component_test extends abstract_testcase {
         $this->component = local_content::component_instance('book');
     }
 
+    /**
+     * setup books
+     *
+     * @param array $books
+     * @param array $chapters
+     * @param int $amount
+     * @param bool $emptyintro
+     * @return void
+     * @throws \dml_exception
+     */
     private function setup_books($books = [], $chapters = [], $amount = 1, $emptyintro = false) {
         global $DB;
         $gen = $this->getDataGenerator();
@@ -115,6 +125,11 @@ class components_book_component_test extends abstract_testcase {
         }
     }
 
+    /**
+     * test get all html content items
+     *
+     * @return void
+     */
     public function test_get_all_html_content_items() {
         $this->setup_books();
         $contentitems = $this->component->get_all_html_content($this->books[0]->id);
@@ -126,18 +141,36 @@ class components_book_component_test extends abstract_testcase {
             $this->chapters[0]->id, 'book', 'book_chapters', 'content');
     }
 
+    /**
+     * test resolve module instance id from book
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_book() {
         $this->setup_books();
         $instanceid = $this->component->resolve_module_instance_id('book', $this->books[0]->id);
         $this->assertEquals($this->books[0]->id, $instanceid);
     }
 
+    /**
+     * test resolve module instance id from chapter
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_chapter() {
         $this->setup_books();
         $instanceid = $this->component->resolve_module_instance_id('book_chapters', $this->chapters[0]->id);
         $this->assertEquals($this->books[0]->id, $instanceid);
     }
 
+    /**
+     * test get all course annotation maps
+     *
+     * @return void
+     * @throws \moodle_exception
+     */
     public function test_get_all_course_annotation_maps() {
         global $PAGE;
         $PAGE->set_pagetype('mod-book-view');
@@ -164,6 +197,9 @@ class components_book_component_test extends abstract_testcase {
 
     /**
      * Test if file in use detection is working with this block.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_files_in_use() {
         global $DB;

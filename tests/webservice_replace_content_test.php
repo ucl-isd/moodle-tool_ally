@@ -48,6 +48,8 @@ class webservice_replace_content_test extends abstract_testcase {
      * Test the web service when used to replace a single content item.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_course_summary() {
         global $DB;
@@ -63,7 +65,12 @@ class webservice_replace_content_test extends abstract_testcase {
     }
 
     /**
+     * test service course section
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_service_course_section() {
         global $DB;
@@ -88,13 +95,8 @@ class webservice_replace_content_test extends abstract_testcase {
      * @param string $modname
      * @param string $table
      * @param string $field
-     * @return mixed|stdClass
-     * @throws dml_exception
-     * @throws invalid_parameter_exception
-     * @throws required_capability_exception
-     * @throws restricted_context_exception
-     *
-     * @runInSeparateProcess
+     * @return \stdClass
+     * @throws \dml_exception
      */
     private function module_replace_test($modname, $table, $field = 'intro') {
         global $DB;
@@ -115,14 +117,21 @@ class webservice_replace_content_test extends abstract_testcase {
     }
 
     /**
+     * test service assign
+     *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_assign() {
         $this->module_replace_test('assign', 'assign');
     }
 
     /**
+     * test service book
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_book() {
         global $DB;
@@ -150,7 +159,11 @@ class webservice_replace_content_test extends abstract_testcase {
     }
 
     /**
+     * test service forum
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_forum() {
         global $USER, $DB;
@@ -187,7 +200,11 @@ class webservice_replace_content_test extends abstract_testcase {
     }
 
     /**
+     * test service glossary
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_glossary() {
         global $USER, $DB;
@@ -212,14 +229,21 @@ class webservice_replace_content_test extends abstract_testcase {
     }
 
     /**
+     * test service label
+     *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_label() {
         $this->module_replace_test('label', 'label');
     }
 
     /**
+     * test service lesson
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_lesson() {
         global $CFG, $DB;
@@ -245,7 +269,10 @@ class webservice_replace_content_test extends abstract_testcase {
     }
 
     /**
+     * test service page
+     *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_page() {
         $this->module_replace_test('page', 'page');
@@ -253,7 +280,11 @@ class webservice_replace_content_test extends abstract_testcase {
     }
 
     /**
+     * test service block html
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_block_html() {
         global $DB;

@@ -44,6 +44,9 @@ class content_updates_task_test extends abstract_testcase {
 
     /**
      * First run should set the timestamp then exit.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_initial_run() {
         $this->resetAfterTest();
@@ -62,6 +65,9 @@ class content_updates_task_test extends abstract_testcase {
 
     /**
      * Nothing should happen if config is invalid.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_invalid_config() {
         $task          = new content_updates_task();
@@ -74,6 +80,11 @@ class content_updates_task_test extends abstract_testcase {
 
     /**
      * Ensure that basic execution and timestamp management is working.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     public function test_push_updates() {
         global $DB;
@@ -107,6 +118,9 @@ class content_updates_task_test extends abstract_testcase {
 
     /**
      * Ensure that our batch looping is working as expected.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_push_updates_batching() {
         global $DB;
@@ -141,6 +155,10 @@ class content_updates_task_test extends abstract_testcase {
 
     /**
      * Test pushing of content deletions.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_push_deletes() {
         global $DB;
@@ -172,6 +190,16 @@ class content_updates_task_test extends abstract_testcase {
         $this->assertEmpty($DB->get_records('tool_ally_deleted_content'));
     }
 
+    /**
+     * assert deletion queue contains
+     *
+     * @param object $component
+     * @param string $table
+     * @param string $field
+     * @param int $id
+     * @return void
+     * @throws \dml_exception
+     */
     private function assert_deletion_queue_contains($component, $table, $field, $id) {
         global $DB;
 
@@ -187,6 +215,14 @@ class content_updates_task_test extends abstract_testcase {
         }
     }
 
+    /**
+     * pre course module delete forum
+     *
+     * @param string $forumtype
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     public function pre_course_module_delete_forum($forumtype = 'forum') {
         global $DB, $USER;
 
@@ -254,6 +290,13 @@ class content_updates_task_test extends abstract_testcase {
         $this->pre_course_module_delete_forum('hsuforum');
     }
 
+    /**
+     * test pre course module delete glossary
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     public function test_pre_course_module_delete_glossary() {
         global $DB, $USER;
 
@@ -317,6 +360,13 @@ class content_updates_task_test extends abstract_testcase {
         $this->assertCount(0, $deleted);
     }
 
+    /**
+     * test performance delete glossary
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     public function test_performance_delete_glossary() {
         global $DB, $USER;
 

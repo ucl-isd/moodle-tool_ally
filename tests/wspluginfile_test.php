@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 use tool_ally\local;
 use tool_ally\auto_config;
 use tool_ally\webservice\wspluginfile;
+use webservice;
 
 require_once(__DIR__.'/abstract_testcase.php');
 
@@ -62,6 +63,14 @@ class wspluginfile_test extends abstract_testcase {
         $this->webservice = new \webservice();
     }
 
+    /**
+     * test validate wspluginfile signature ally webuser exception
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     * @throws \webservice_access_exception
+     */
     public function test_validate_wspluginfile_signature_ally_webuser_exception() {
         $pathnamehash = sha1(uniqid());
         $iat = time();
@@ -77,6 +86,9 @@ class wspluginfile_test extends abstract_testcase {
 
     /**
      * Initialise a test with config auto configured.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     private function auto_config() {
         $this->resetAfterTest();
@@ -88,7 +100,13 @@ class wspluginfile_test extends abstract_testcase {
     }
 
     /**
+     * test validate wspluginfile signature signature invalid exception
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     * @throws \webservice_access_exception
      */
     public function test_validate_wspluginfile_signature_signature_invalid_exception() {
         $this->auto_config();
@@ -104,7 +122,13 @@ class wspluginfile_test extends abstract_testcase {
     }
 
     /**
+     * test validate wspluginfile signature signature
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     * @throws \webservice_access_exception
      */
     public function test_validate_wspluginfile_signature_signature() {
         $this->auto_config();
@@ -120,6 +144,12 @@ class wspluginfile_test extends abstract_testcase {
         $this->assertArrayHasKey('service', $authinfo);
     }
 
+    /**
+     * prepare get file
+     *
+     * @return array
+     * @throws \coding_exception
+     */
     private function prepare_get_file() {
         $this->auto_config();
 
@@ -139,7 +169,14 @@ class wspluginfile_test extends abstract_testcase {
     }
 
     /**
+     * test get file by signature
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \invalid_parameter_exception
+     * @throws \moodle_exception
+     * @throws \webservice_access_exception
      */
     public function test_get_file_by_signature() {
         list ($wstoken, $iat, $pathnamehash, $file) = $this->prepare_get_file();
@@ -151,7 +188,14 @@ class wspluginfile_test extends abstract_testcase {
     }
 
     /**
+     * test get file by token
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \invalid_parameter_exception
+     * @throws \moodle_exception
+     * @throws \webservice_access_exception
      */
     public function test_get_file_by_token() {
         list ($wstoken, $iat, $pathnamehash, $file) = $this->prepare_get_file();

@@ -81,11 +81,11 @@ class version_information {
         global $CFG, $USER;
         $manager = new \core_privacy\local\sitepolicy\manager();
         // Check that the user has agreed to a site policy if there is one - do not test in case of admins.
-        if (empty($USER->policyagreed) and !is_siteadmin()) {
-            if ($manager->is_defined() and !isguestuser()) {
+        if (empty($USER->policyagreed) && !is_siteadmin()) {
+            if ($manager->is_defined() && !isguestuser()) {
                 $url = $manager->get_embed_url();
                 throw new moodle_exception('sitepolicynotagreed', 'error', '', $url->get_path());
-            } else if ($manager->is_defined(true) and isguestuser()) {
+            } else if ($manager->is_defined(true) && isguestuser()) {
                 $guesturl = $manager->get_embed_url(true);
                 throw new moodle_exception('sitepolicynotagreed', 'error', '', $guesturl->get_path());
             }

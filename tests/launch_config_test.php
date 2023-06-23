@@ -29,11 +29,26 @@ class launch_config_test extends \advanced_testcase {
         global $CFG;
         require_once($CFG->dirroot.'/mod/lti/locallib.php');
     }
+
+    /**
+     * test not configured nothing
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \moodle_exception
+     */
     public function test_not_configured_nothing() {
         $this->expectExceptionMessage(get_string('notconfigured', 'report_allylti'));
         new launch_config((object) [], (object) []);
     }
 
+    /**
+     * test not configured partial adminurl
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \moodle_exception
+     */
     public function test_not_configured_partial_adminurl() {
         $this->expectExceptionMessage(get_string('notconfigured', 'report_allylti'));
         new launch_config((object) [
@@ -41,6 +56,13 @@ class launch_config_test extends \advanced_testcase {
         ], (object) []);
     }
 
+    /**
+     * test not configured partial adminurl secret
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \moodle_exception
+     */
     public function test_not_configured_partial_adminurl_secret() {
         $this->expectExceptionMessage(get_string('notconfigured', 'report_allylti'));
         new launch_config((object) [
@@ -49,6 +71,12 @@ class launch_config_test extends \advanced_testcase {
         ], (object) []);
     }
 
+    /**
+     * test configured
+     *
+     * @return void
+     * @throws \moodle_exception
+     */
     public function test_configured() {
         $key = 'somekey';
         $secret = 'somesecret';

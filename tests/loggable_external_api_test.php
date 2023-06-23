@@ -40,6 +40,16 @@ use Psr\Log\LogLevel;
  */
 class loggable_external_api_test extends abstract_testcase {
 
+    /**
+     * test service version failure logged
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \invalid_parameter_exception
+     * @throws \required_capability_exception
+     * @throws \restricted_context_exception
+     */
     public function test_service_version_failure_logged() {
         $this->resetAfterTest();
 

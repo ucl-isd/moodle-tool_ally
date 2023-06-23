@@ -42,6 +42,10 @@ class webservice_delete_file_test extends abstract_testcase {
      * Test the web service.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \invalid_response_exception
      */
     public function test_service() {
         global $DB;
@@ -74,7 +78,13 @@ class webservice_delete_file_test extends abstract_testcase {
     }
 
     /**
+     * test service invalid user
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \invalid_response_exception
      */
     public function test_service_invalid_user() {
         $this->resetAfterTest();
@@ -98,7 +108,11 @@ class webservice_delete_file_test extends abstract_testcase {
     }
 
     /**
+     * test service invalid file
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_invalid_file() {
         global $DB;

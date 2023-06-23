@@ -24,6 +24,8 @@
  */
 namespace tool_ally;
 
+use context_course;
+use stdClass;
 use tool_ally\componentsupport\hsuforum_component;
 use tool_ally\local_content;
 use tool_ally\componentsupport\forum_component;
@@ -134,6 +136,14 @@ class components_hsuforum_component_test extends abstract_testcase {
         $this->component = local_content::component_instance($this->forumtype);
     }
 
+    /**
+     * assert content items contain discussion post
+     *
+     * @param array $items
+     * @param int $discussionid
+     * @return void
+     * @throws \dml_exception
+     */
     private function assert_content_items_contain_discussion_post(array $items, $discussionid) {
         global $DB;
 
@@ -142,6 +152,14 @@ class components_hsuforum_component_test extends abstract_testcase {
             $post->id, $this->forumtype, $this->forumtype.'_posts', 'message');
     }
 
+    /**
+     * assert content items not contain discussion post
+     *
+     * @param array $items
+     * @param int $discussionid
+     * @return void
+     * @throws \dml_exception
+     */
     private function assert_content_items_not_contain_discussion_post(array $items, $discussionid) {
         global $DB;
 
@@ -150,6 +168,11 @@ class components_hsuforum_component_test extends abstract_testcase {
             $post->id, $this->forumtype, $this->forumtype.'_posts', 'message');
     }
 
+    /**
+     * test get discussion html content items
+     *
+     * @return void
+     */
     public function test_get_discussion_html_content_items() {
         $contentitems = \phpunit_util::call_internal_method(
             $this->component, 'get_discussion_html_content_items', [
@@ -162,12 +185,24 @@ class components_hsuforum_component_test extends abstract_testcase {
         $this->assert_content_items_not_contain_discussion_post($contentitems, $this->studentdiscussion->id);
     }
 
+    /**
+     * test resolve module instance id from forum
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_forum() {
         $component = new hsuforum_component();
         $instanceid = $component->resolve_module_instance_id($this->forumtype, $this->forum->id);
         $this->assertEquals($this->forum->id, $instanceid);
     }
 
+    /**
+     * test resolve module instance id from post
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_resolve_module_instance_id_from_post() {
         global $DB;
 
@@ -178,6 +213,13 @@ class components_hsuforum_component_test extends abstract_testcase {
         $this->assertEquals($this->forum->id, $instanceid);
     }
 
+    /**
+     * test get all course annotation maps
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     public function test_get_all_course_annotation_maps() {
         global $PAGE, $DB;
 
@@ -202,6 +244,8 @@ class components_hsuforum_component_test extends abstract_testcase {
 
     /**
      * Test if file in use detection is working with this module.
+     *
+     * @return void
      */
     public function test_check_file_in_use() {
         $context = \context_module::instance($this->forum->cmid);

@@ -36,6 +36,9 @@ use tool_ally\auto_config;
 class local_test extends \advanced_testcase {
     /**
      * Test get role IDs.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_get_roleids() {
         global $DB;
@@ -58,6 +61,7 @@ class local_test extends \advanced_testcase {
 
     /**
      * Test get admin IDs.
+     *
      */
     public function test_get_adminids() {
         $admins  = get_admins();
@@ -68,6 +72,13 @@ class local_test extends \advanced_testcase {
         }
     }
 
+    /**
+     * test get ws token invalid config
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \webservice_access_exception
+     */
     public function test_get_ws_token_invalid_config() {
         // Test failure without ally_webuser / valid configuration.
         $expectedmsg = 'Access control exception (Ally web user (ally_webuser) does not exist.';
@@ -78,6 +89,10 @@ class local_test extends \advanced_testcase {
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \webservice_access_exception
      */
     public function test_get_ws_token() {
         $this->resetAfterTest();

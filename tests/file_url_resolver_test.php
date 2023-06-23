@@ -55,6 +55,8 @@ class file_url_resolver_test extends abstract_testcase {
 
     /**
      * Test default URL resolution.
+     *
+     * @return void
      */
     public function test_resolve_default() {
         global $CFG;
@@ -71,6 +73,11 @@ class file_url_resolver_test extends abstract_testcase {
 
     /**
      * Test forum post URL resolution.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     public function test_resolve_forum_post() {
         global $USER, $DB;
@@ -103,6 +110,9 @@ class file_url_resolver_test extends abstract_testcase {
 
     /**
      * Test question URL resolution.
+     *
+     * @return void
+     * @throws \moodle_exception
      */
     public function test_resolve_question() {
         $context = \context_course::instance($this->course->id);

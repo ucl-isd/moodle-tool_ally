@@ -27,6 +27,13 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
+use coding_exception;
+use context;
+use file_exception;
+use moodle_exception;
+use stdClass;
+use stored_file;
+use stored_file_creation_exception;
 use tool_ally\local;
 use tool_ally\local_content;
 use tool_ally\models\component;

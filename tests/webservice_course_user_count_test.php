@@ -39,7 +39,11 @@ use tool_ally\webservice\course_user_count;
 class webservice_course_user_count_test extends \externallib_advanced_testcase {
 
     /**
+     * test user count
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_user_count() {
         global $DB;

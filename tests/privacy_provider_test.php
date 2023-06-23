@@ -38,6 +38,8 @@ use tool_ally\privacy\provider;
 class privacy_provider_test extends provider_testcase {
     /**
      * Test for provider::get_metadata().
+     *
+     * @return void
      */
     public function test_get_metadata() {
         if (!method_exists(collection::class, 'add_external_location_link')) {

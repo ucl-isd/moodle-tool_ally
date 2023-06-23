@@ -82,9 +82,13 @@ class components_component_base_test extends \advanced_testcase {
         $gen->enrol_user($this->teacher->id, $this->course->id, 'editingteacher');
 
         $this->component = local_content::component_instance('glossary');
-
     }
 
+    /**
+     * test get approved author ids for context
+     *
+     * @return void
+     */
     public function test_get_approved_author_ids_for_context() {
         $authorids = $this->component->get_approved_author_ids_for_context($this->coursecontext);
         $this->assertTrue(in_array($this->teacher->id, $authorids),
@@ -95,6 +99,11 @@ class components_component_base_test extends \advanced_testcase {
                 'Student id '.$this->student->id.' should NOT be in list of author ids.');
     }
 
+    /**
+     * test user is approved author type
+     *
+     * @return void
+     */
     public function test_user_is_approved_author_type() {
         $this->assertFalse($this->component->user_is_approved_author_type($this->student->id, $this->coursecontext),
             'Student should not be approved author type');
@@ -103,5 +112,4 @@ class components_component_base_test extends \advanced_testcase {
         $this->assertTrue($this->component->user_is_approved_author_type($this->admin->id, $this->coursecontext),
             'Admin should be approved author type');
     }
-
 }

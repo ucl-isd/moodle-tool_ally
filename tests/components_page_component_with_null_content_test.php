@@ -58,6 +58,11 @@ class components_page_component_with_null_content_test extends abstract_testcase
         );
     }
 
+    /**
+     * test get all html content when null content
+     *
+     * @return void
+     */
     public function test_get_all_html_content_when_null_content() {
         $items = local_content::get_all_html_content($this->page->id, 'page', true);
         $this->assertEmpty($items[1]->content);

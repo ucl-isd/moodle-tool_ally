@@ -23,6 +23,11 @@
  */
 namespace tool_ally;
 
+use dml_exception;
+use invalid_response_exception;
+use moodle_exception;
+use stdClass;
+use stored_file;
 use tool_ally\webservice\replace_file;
 use tool_ally\local;
 
@@ -69,6 +74,11 @@ class webservice_replace_file_test extends abstract_testcase {
         $datagen->enrol_user($this->teacher->id, $this->course->id, 'editingteacher');
     }
 
+    /**
+     * std img html
+     *
+     * @return string
+     */
     private function std_img_html() {
         return '<img src="@@PLUGINFILE@@/gd%20logo.png" alt="" width="100" height="100">';
     }
@@ -77,6 +87,10 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test the web service.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws invalid_response_exception
+     * @throws moodle_exception
      */
     public function test_service() {
         $datagen = $this->getDataGenerator();
@@ -102,7 +116,12 @@ class webservice_replace_file_test extends abstract_testcase {
     }
 
     /**
+     * test service invalid user
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws invalid_response_exception
      */
     public function test_service_invalid_user() {
         $otheruser = $this->getDataGenerator()->create_user();
@@ -125,7 +144,11 @@ class webservice_replace_file_test extends abstract_testcase {
     }
 
     /**
+     * test service invalid file
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_service_invalid_file() {
         // Can use fake as file check will fail before it is used.
@@ -140,6 +163,13 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within label module intro.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
+     * @throws invalid_response_exception
+     * @throws moodle_exception
      */
     public function test_service_label_html() {
         global $DB;
@@ -174,6 +204,13 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within page module intro.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
+     * @throws invalid_response_exception
+     * @throws moodle_exception
      */
     public function test_service_page_html() {
         global $DB;
@@ -214,6 +251,13 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within course summary.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
+     * @throws invalid_response_exception
+     * @throws moodle_exception
      */
     public function test_service_course_html() {
         global $DB;
@@ -244,6 +288,13 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within course section html.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
+     * @throws invalid_response_exception
+     * @throws moodle_exception
      */
     public function test_service_course_section_html() {
         global $DB;
@@ -278,6 +329,13 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within course section html.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
+     * @throws invalid_response_exception
+     * @throws moodle_exception
      */
     public function test_service_block_html() {
         global $DB;
@@ -333,8 +391,11 @@ class webservice_replace_file_test extends abstract_testcase {
 
     /**
      * Replace file.
+     *
      * @param stored_file $originalfile
      * @param stdClass | bool $user
+     * @return void
+     * @throws \coding_exception
      * @throws invalid_response_exception
      * @throws moodle_exception
      */
@@ -353,6 +414,11 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within forum module intro / discussion / posts.
      *
      * @runInSeparateProcess
+     * @param $forumtype
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_service_forum_html($forumtype = 'forum') {
         global $DB;
@@ -434,6 +500,7 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within hsuforum module intro / discussion / posts.
      *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_hsuforum_html() {
         global $CFG;
@@ -446,6 +513,11 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within questions.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_service_question_html() {
         global $DB;
@@ -495,6 +567,11 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within questions.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_service_question_html_multichoice() {
         global $DB;
@@ -633,6 +710,8 @@ class webservice_replace_file_test extends abstract_testcase {
      * @return void
      * @throws \coding_exception
      * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      *
      * @runInSeparateProcess
      */
@@ -798,6 +877,10 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within lesson module intro / pages.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_service_lesson_html() {
         global $DB;
@@ -844,6 +927,10 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing files within glossary module intro / pages.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_service_glossary_html() {
         global $DB;
@@ -891,6 +978,13 @@ class webservice_replace_file_test extends abstract_testcase {
      * Test replacing file where filename already exists.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \invalid_response_exception
+     * @throws \moodle_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_service_replace_existing_filename() {
         global $DB;

@@ -41,6 +41,8 @@ class webservice_version_info_test extends abstract_testcase {
      * Test the web service.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_service() {
         $this->resetAfterTest();
@@ -65,7 +67,11 @@ class webservice_version_info_test extends abstract_testcase {
     }
 
     /**
+     * test warn on site policy not accepted
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_warn_on_site_policy_not_accepted() {
         $this->resetAfterTest();

@@ -43,6 +43,9 @@ class file_updates_task_test extends abstract_testcase {
 
     /**
      * First run should set the timestamp then exit.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_initial_run() {
         $this->resetAfterTest();
@@ -61,6 +64,9 @@ class file_updates_task_test extends abstract_testcase {
 
     /**
      * Nothing should happen if config is invalid.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_invalid_config() {
         $task          = new file_updates_task();
@@ -73,6 +79,10 @@ class file_updates_task_test extends abstract_testcase {
 
     /**
      * Ensure that basic execution and timestamp management is working.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_push_updates() {
         $this->resetAfterTest();
@@ -102,6 +112,8 @@ class file_updates_task_test extends abstract_testcase {
 
     /**
      * Ensure that our batch looping is working as expected.
+     *
+     * @return void
      */
     public function test_push_updates_batching() {
         $this->resetAfterTest();
@@ -129,6 +141,10 @@ class file_updates_task_test extends abstract_testcase {
 
     /**
      * Test pushing of file deletions.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_push_deletes() {
         global $DB;

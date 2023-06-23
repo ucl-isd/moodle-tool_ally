@@ -27,6 +27,9 @@ use tool_ally\adminsetting\ally_trim;
 class adminsetting_ally_trim_test extends \advanced_testcase {
     /**
      * Test settings are trimmed.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_trim() {
         $this->resetAfterTest();

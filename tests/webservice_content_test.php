@@ -40,7 +40,11 @@ require_once(__DIR__.'/abstract_testcase.php');
 class webservice_content_test extends abstract_testcase {
 
     /**
+     * test invalid component
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_invalid_component() {
         $this->resetAfterTest();
@@ -50,7 +54,11 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test invalid table
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_invalid_table() {
         $this->resetAfterTest();
@@ -61,7 +69,11 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test invalid field
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_invalid_field() {
         $this->resetAfterTest();
@@ -72,7 +84,11 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test invalid id
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_invalid_id() {
         $this->resetAfterTest();
@@ -86,6 +102,9 @@ class webservice_content_test extends abstract_testcase {
      * Test the web service when used to get a single course summary content item.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     public function test_service_course_summary() {
 
@@ -119,6 +138,9 @@ class webservice_content_test extends abstract_testcase {
      * Test the web service when used to get a single course section content item.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_service_course_section() {
         global $DB;
@@ -156,14 +178,16 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * main module content test
+     *
      * @param string $modname
      * @param string $table
      * @param string $field
-     * @return stdClass
-     * @throws dml_exception
-     * @throws invalid_parameter_exception
-     * @throws required_capability_exception
-     * @throws restricted_context_exception
+     * @param string $titlefield
+     * @return \stdClass
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     private function main_module_content_test($modname, $table, $field = 'intro', $titlefield = 'name') {
         global $DB;
@@ -235,6 +259,7 @@ class webservice_content_test extends abstract_testcase {
      * Test the web service when used to get a label content item.
      *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_label_content() {
         $this->main_module_content_test('label', 'label');
@@ -244,6 +269,7 @@ class webservice_content_test extends abstract_testcase {
      * Test the web service when used to get an assign content item.
      *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_assign_content() {
         $this->main_module_content_test('assign', 'assign');
@@ -253,6 +279,9 @@ class webservice_content_test extends abstract_testcase {
      * Test the web service when used to get forum content items.
      *
      * @runInSeparateProcess
+     * @param string $forumtype
+     * @return void
+     * @throws \Exception
      */
     public function test_service_forum_content($forumtype = 'forum') {
         $forum = $this->main_module_content_test($forumtype, $forumtype);
@@ -297,7 +326,10 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test service hsuforum content
+     *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_hsuforum_content() {
         global $CFG;
@@ -307,7 +339,10 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test service page content
+     *
      * @runInSeparateProcess
+     * @return void
      */
     public function test_service_page_content() {
         $this->main_module_content_test('page', 'page');
@@ -315,7 +350,12 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test service lesson content
+     *
      * @runInSeparateProcess
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_lesson_content() {
         global $DB;
@@ -352,7 +392,11 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test service block html content
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_service_block_html_content() {
         $this->resetAfterTest();
@@ -386,7 +430,11 @@ class webservice_content_test extends abstract_testcase {
     }
 
     /**
+     * test service module wrong course
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_service_module_wrong_course() {
         global $DB, $CFG;

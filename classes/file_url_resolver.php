@@ -24,6 +24,8 @@
 
 namespace tool_ally;
 
+use stored_file;
+
 /**
  * Resolve the URL of a file to see it in context.
  *
@@ -49,10 +51,10 @@ class file_url_resolver {
     /**
      * Given a file, find a URL to view it in Moodle UI.
      *
-     * @param \stored_file $file
+     * @param stored_file $file
      * @return \moodle_url|null
      */
-    public function resolve_url(\stored_file $file) {
+    public function resolve_url(stored_file $file) {
         $url = null;
         switch ($file->get_component()) {
             case 'forum':
@@ -76,10 +78,10 @@ class file_url_resolver {
     /**
      * Most generic way to get a file URL.
      *
-     * @param \stored_file $file
+     * @param stored_file $file
      * @return \moodle_url
      */
-    private function default_resolver(\stored_file $file) {
+    private function default_resolver(stored_file $file) {
         $context = \context::instance_by_id($file->get_contextid());
         return $context->get_url();
     }
@@ -89,10 +91,10 @@ class file_url_resolver {
      *
      * This also works for mod_hsuforum.
      *
-     * @param \stored_file $file
+     * @param stored_file $file
      * @return \moodle_url|null
      */
-    private function mod_forum_resolver(\stored_file $file) {
+    private function mod_forum_resolver(stored_file $file) {
         if (!in_array($file->get_filearea(), ['attachment', 'post'])) {
             return null;
         }
@@ -110,10 +112,10 @@ class file_url_resolver {
     /**
      * Resolve URL for questions.
      *
-     * @param \stored_file $file
+     * @param stored_file $file
      * @return \moodle_url|null
      */
-    private function question_resolver(\stored_file $file) {
+    private function question_resolver(stored_file $file) {
         $params  = [];
         $context = \context::instance_by_id($file->get_contextid());
         if ($context instanceof \context_course) {

@@ -43,6 +43,12 @@ require_once(__DIR__.'/abstract_testcase.php');
  */
 class push_file_updates_error_retry_test extends abstract_testcase {
 
+    /**
+     * test retry increase push disabled task reset
+     *
+     * @return void
+     * @throws \coding_exception
+     */
     public function test_retry_increase_push_disabled_task_reset() {
         $this->resetAfterTest();
         $this->setAdminUser();

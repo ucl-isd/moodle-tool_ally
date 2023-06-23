@@ -42,6 +42,11 @@ class password_test extends advanced_testcase {
         $this->password = new password();
     }
 
+    /**
+     * test password consecutives
+     *
+     * @return void
+     */
     public function test_password_consecutives() {
         global $CFG;
         $this->resetAfterTest();

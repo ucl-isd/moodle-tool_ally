@@ -43,6 +43,8 @@ class course_updates_task_test extends abstract_testcase {
 
     /**
      * Ensure that basic execution and timestamp management is working.
+     *
+     * @return void
      */
     public function test_push_updates() {
         $this->resetAfterTest();
@@ -65,6 +67,8 @@ class course_updates_task_test extends abstract_testcase {
 
     /**
      * Ensure that our batch looping is working as expected.
+     *
+     * @return void
      */
     public function test_push_updates_batching() {
         $this->resetAfterTest();
@@ -92,6 +96,10 @@ class course_updates_task_test extends abstract_testcase {
 
     /**
      * Test pushing of content deletions.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_push_deletes() {
         global $DB;

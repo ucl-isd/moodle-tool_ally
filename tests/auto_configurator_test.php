@@ -45,6 +45,8 @@ class auto_configurator_test extends \advanced_testcase {
 
     /**
      * @runInSeparateProcess
+     * @return void
+     * @throws \dml_exception
      */
     public function test_configure_settings() {
         $configs = [
@@ -69,6 +71,9 @@ class auto_configurator_test extends \advanced_testcase {
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_configure_settings_invalid_setting() {
         $configs = [
@@ -97,6 +102,9 @@ class auto_configurator_test extends \advanced_testcase {
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
+     * @throws \Exception
      */
     public function test_configure_webservices() {
         $wsconfig = new auto_config();

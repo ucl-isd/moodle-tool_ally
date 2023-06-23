@@ -139,7 +139,7 @@ class event_handlers_test extends abstract_testcase {
      * @param string $eventname
      * @param string $entityid
      * @return void
-     * @throws coding_exception
+     * @throws \coding_exception
      */
     private function assert_pushtrace_contains_entity_id($eventname, $entityid) {
         $pushtraces = content_processor::get_push_traces($eventname);
@@ -152,7 +152,7 @@ class event_handlers_test extends abstract_testcase {
     /**
      * @param $eventname
      * @param $fileid
-     * @throws coding_exception
+     * @throws \coding_exception
      */
     private function assert_pushtrace_contains_file_id($eventname, $fileid) {
         $pushtraces = file_processor::get_push_traces($eventname);
@@ -165,7 +165,7 @@ class event_handlers_test extends abstract_testcase {
     /**
      * @param string $eventname
      * @param string $entityid
-     * @throws coding_exception
+     * @throws \coding_exception
      */
     private function assert_pushtrace_not_contains_entity_id($eventname, $entityid) {
         $pushtraces = content_processor::get_push_traces($eventname);
@@ -178,7 +178,7 @@ class event_handlers_test extends abstract_testcase {
     /**
      * @param $eventname
      * @param $fileid
-     * @throws coding_exception
+     * @throws \coding_exception
      */
     private function assert_pushtrace_not_contains_file_id($eventname, $fileid) {
         $pushtraces = content_processor::get_push_traces($eventname);
@@ -216,8 +216,8 @@ MSG;
     /**
      * Checks push traces in course processor for the context_id key.
      *
-     * @param $eventname
-     * @param $contextid
+     * @param string $eventname
+     * @param int $contextid
      * @return bool
      */
     private function check_pushtrace_contains_context_id($eventname, $contextid) {
@@ -230,7 +230,7 @@ MSG;
      * @param string $eventname
      * @param string $contextid
      * @return void
-     * @throws coding_exception
+     * @throws \coding_exception
      */
     private function assert_pushtrace_contains_context_id($eventname, $contextid) {
         $pushtraces = course_processor::get_push_traces($eventname);
@@ -242,6 +242,10 @@ MSG;
 
     /**
      * Test pushes on course creation.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_course_created() {
         global $DB;
@@ -269,6 +273,13 @@ MSG;
         $this->assert_pushtrace_contains_entity_id(event_handlers::API_RICH_CNT_CREATED, $entityid);
     }
 
+    /**
+     * test course updated
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function test_course_updated() {
         global $DB;
 
@@ -295,6 +306,10 @@ MSG;
 
     /**
      * Basic test to see if a message is sent for course copies.
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     public function test_course_restored() {
         global $DB, $CFG;
@@ -355,6 +370,9 @@ MSG;
 
     /**
      * Basic test to see if a message is sent for course import.
+     *
+     * @return void
+     * @throws \restore_controller_exception
      */
     public function test_course_imported() {
         global $CFG, $USER;
@@ -392,6 +410,13 @@ MSG;
         $this->assertTrue($contains, "Course push trace with source_context_id of {$course->id} not found.");
     }
 
+    /**
+     * test course section created
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function test_course_section_created() {
         global $DB;
 
@@ -408,6 +433,13 @@ MSG;
         $this->assert_pushtrace_contains_entity_id(event_handlers::API_RICH_CNT_CREATED, $entityid);
     }
 
+    /**
+     * test course section updated
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function test_course_section_updated() {
         global $DB;
 
@@ -468,12 +500,14 @@ MSG;
 
 
     /**
+     * check module created pushtraces
+     *
      * @param string $modname
      * @param string $modtable
      * @param string $modfield
-     * @return stdClass
-     * @throws coding_exception
-     * @throws moodle_exception
+     * @return \stdClass
+     * @throws \coding_exception
+     * @throws \moodle_exception
      */
     private function check_module_created_pushtraces($modname, $modtable, $modfield) {
         $this->setAdminUser();
@@ -498,16 +532,16 @@ MSG;
     }
 
     /**
+     * check module updated pushtraces
+     *
      * @param string $modname
      * @param string $modtable
      * @param string $modfield
      * @param string $filearea
-     * @return stdClass
-     * @throws coding_exception
-     * @throws dml_exception
-     * @throws file_exception
-     * @throws moodle_exception
-     * @throws stored_file_creation_exception
+     * @return \stdClass
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     private function check_module_updated_pushtraces($modname, $modtable, $modfield, $filearea) {
         global $DB;
@@ -564,6 +598,16 @@ MSG;
         return $mod;
     }
 
+    /**
+     * check module deleted pushtraces
+     *
+     * @param string $modname
+     * @param string $modtable
+     * @param string $modfield
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     private function check_module_deleted_pushtraces($modname, $modtable, $modfield) {
         global $DB;
 
@@ -621,22 +665,49 @@ MSG;
         $this->assert_pushtrace_contains_entity_id(event_handlers::API_RICH_CNT_DELETED, $entityid);
     }
 
+    /**
+     * test assign created
+     *
+     * @return void
+     */
     public function test_assign_created() {
         $this->check_module_created_pushtraces('assign', 'assign', 'intro');
     }
 
+    /**
+     * test assign updated
+     *
+     * @return void
+     */
     public function test_assign_updated() {
         $this->check_module_updated_pushtraces('assign', 'assign', 'intro', 'intro');
     }
 
+    /**
+     * test assign deleted
+     *
+     * @return void
+     */
     public function test_assign_deleted() {
         $this->check_module_deleted_pushtraces('assign', 'assign', 'intro');
     }
 
+    /**
+     * test book created
+     *
+     * @return void
+     */
     public function test_book_created() {
         $this->check_module_created_pushtraces('book', 'book', 'intro');
     }
 
+    /**
+     * test book updated
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function test_book_updated() {
         global $DB;
 
@@ -691,6 +762,13 @@ MSG;
 
     }
 
+    /**
+     * test book deleted
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \moodle_exception
+     */
     public function test_book_deleted() {
         global $USER;
 
@@ -743,30 +821,66 @@ MSG;
         $this->assert_pushtrace_contains_entity_id(event_handlers::API_RICH_CNT_DELETED, $chapter1entityid);
     }
 
+    /**
+     * test forum created
+     *
+     * @return void
+     */
     public function test_forum_created() {
         $this->check_module_created_pushtraces('forum', 'forum', 'intro');
     }
 
+    /**
+     * test forum updated
+     *
+     * @return void
+     */
     public function test_forum_updated() {
         $this->check_module_updated_pushtraces('forum', 'forum', 'intro', 'intro');
     }
 
+    /**
+     * test forum deleted
+     *
+     * @return void
+     */
     public function test_forum_deleted() {
         $this->check_module_deleted_pushtraces('forum', 'forum', 'intro');
     }
 
+    /**
+     * test label created
+     *
+     * @return void
+     */
     public function test_label_created() {
         $this->check_module_created_pushtraces('label', 'label', 'intro');
     }
 
+    /**
+     * test label updated
+     *
+     * @return void
+     */
     public function test_label_updated() {
         $this->check_module_updated_pushtraces('label', 'label', 'intro', 'intro');
     }
 
+    /**
+     * test label deleted
+     *
+     * @return void
+     */
     public function test_label_deleted() {
         $this->check_module_deleted_pushtraces('label', 'label', 'intro');
     }
 
+    /**
+     * test lesson created
+     *
+     * @return void
+     * @throws \dml_exception
+     */
     public function test_lesson_created() {
         global $DB;
 
@@ -790,6 +904,13 @@ MSG;
         }
     }
 
+    /**
+     * test lesson updated
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     public function test_lesson_updated() {
         global $DB;
 
@@ -818,28 +939,61 @@ MSG;
         }
     }
 
+    /**
+     * test lesson deleted
+     *
+     * @return void
+     */
     public function test_lesson_deleted() {
         $this->check_module_deleted_pushtraces('lesson', 'lesson', 'intro');
     }
 
+    /**
+     * test page created
+     *
+     * @return void
+     */
     public function test_page_created() {
         $this->check_module_created_pushtraces('page', 'page', 'intro');
         $this->check_module_created_pushtraces('page', 'page', 'content');
     }
 
+    /**
+     * test page updated
+     *
+     * @return void
+     */
     public function test_page_updated() {
         $this->check_module_updated_pushtraces('page', 'page', 'intro', 'intro');
         $this->check_module_updated_pushtraces('page', 'page', 'content', 'content');
     }
 
+    /**
+     * test page deleted intro
+     *
+     * @return void
+     */
     public function test_page_deleted_intro() {
         $this->check_module_deleted_pushtraces('page', 'page', 'intro');
     }
 
+    /**
+     * test page deleted content
+     *
+     * @return void
+     */
     public function test_page_deleted_content() {
         $this->check_module_deleted_pushtraces('page', 'page', 'content');
     }
 
+    /**
+     * test forum discussion created
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     public function test_forum_discussion_created() {
         global $USER, $DB;
 
@@ -900,6 +1054,14 @@ MSG;
         post_updated::create($params);
     }
 
+    /**
+     * test forum single discussion created
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
     public function test_forum_single_discussion_created() {
         global $USER, $DB;
 
@@ -931,6 +1093,13 @@ MSG;
         $this->assert_pushtrace_contains_entity_id(event_handlers::API_RICH_CNT_CREATED, $postentityid);
     }
 
+    /**
+     * test glossary events
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \moodle_exception
+     */
     public function test_glossary_events() {
         global $USER;
 
@@ -1003,8 +1172,10 @@ MSG;
 
     /**
      * Verifies course event processing for the course event push handling.
-     * @throws coding_exception
-     * @throws moodle_exception
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \moodle_exception
      */
     public function test_course_events() {
         $course = $this->getDataGenerator()->create_course();

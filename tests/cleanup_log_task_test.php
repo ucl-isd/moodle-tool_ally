@@ -41,6 +41,9 @@ require_once(__DIR__.'/abstract_testcase.php');
 class cleanup_log_task_test extends abstract_testcase {
     /**
      * Test the general behavior of the task execution.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_execute() {
         global $DB;

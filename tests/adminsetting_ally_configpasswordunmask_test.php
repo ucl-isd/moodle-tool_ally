@@ -27,6 +27,9 @@ use tool_ally\adminsetting\ally_configpasswordunmask;
 class adminsetting_ally_configpasswordunmask_test extends \advanced_testcase {
     /**
      * Test ally configpasswordunmask settings are trimmed.
+     *
+     * @return void
+     * @throws \dml_exception
      */
     public function test_configpasswordunmask() {
         $this->resetAfterTest();

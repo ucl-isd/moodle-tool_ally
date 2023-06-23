@@ -42,6 +42,10 @@ class lib_test extends abstract_testcase {
 
     /**
      * Test file deletion callback.
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     public function test_tool_ally_after_file_deleted() {
         global $DB;
@@ -71,6 +75,12 @@ class lib_test extends abstract_testcase {
 
     /**
      * Test section deletion callback.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_tool_ally_after_section_deleted() {
         global $DB;

@@ -80,6 +80,15 @@ class components_block_html_component_test extends abstract_testcase {
         $this->component = local_content::component_instance('block_html');
     }
 
+    /**
+     * add block
+     *
+     * @param array|null $data
+     * @return \block_calendar_upcoming
+     * @throws \file_exception
+     * @throws \moodle_exception
+     * @throws \stored_file_creation_exception
+     */
     private function add_block( array $data = null) : \block_calendar_upcoming {
         global $USER;
 
@@ -116,7 +125,11 @@ class components_block_html_component_test extends abstract_testcase {
     }
 
     /**
+     * test list content
+     *
      * @runInSeparateProcess
+     * @return void
+     * @throws \Exception
      */
     public function test_list_content() {
         $this->setAdminUser();
@@ -138,6 +151,12 @@ class components_block_html_component_test extends abstract_testcase {
             $block->context->instanceid, 'block_html', 'block_instances', 'configdata');
     }
 
+    /**
+     * test get all html content
+     *
+     * @return void
+     * @throws \moodle_exception
+     */
     public function test_get_all_html_content() {
         $sctc = new search_content_test();
 
@@ -180,6 +199,12 @@ class components_block_html_component_test extends abstract_testcase {
         $this->assertEquals($expectedformat, $content->contentformat);
     }
 
+    /**
+     * test get course html content items
+     *
+     * @return void
+     * @throws \moodle_exception
+     */
     public function test_get_course_html_content_items() {
         $sctc = new search_content_test();
 
@@ -222,6 +247,9 @@ class components_block_html_component_test extends abstract_testcase {
 
     /**
      * Test if file in use detection is working with this module.
+     *
+     * @return void
+     * @throws \moodle_exception
      */
     public function test_file_in_use() {
         global $USER;

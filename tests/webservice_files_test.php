@@ -41,6 +41,10 @@ class webservice_files_test extends abstract_testcase {
      * Test the web service.
      *
      * @runInSeparateProcess
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \invalid_response_exception
      */
     public function test_service() {
         $this->resetAfterTest();

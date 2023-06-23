@@ -38,6 +38,12 @@ class auto_config_resolver_test extends \advanced_testcase {
         $this->resetAfterTest(true);
     }
 
+    /**
+     * test resolve clioption
+     *
+     * @return void
+     * @throws \coding_exception
+     */
     public function test_resolve_clioption() {
         $configs = [
             'secret'   => 'password!',
@@ -50,6 +56,12 @@ class auto_config_resolver_test extends \advanced_testcase {
         $this->assertSame($configs, $resolver->resolve());
     }
 
+    /**
+     * test resolve envvar
+     *
+     * @return void
+     * @throws \coding_exception
+     */
     public function test_resolve_envvar() {
         $configs = [
             'secret'   => 'password!',
@@ -66,8 +78,13 @@ class auto_config_resolver_test extends \advanced_testcase {
     }
 
     /**
+     * test resolve noconfigs
+     *
      * You provide configs by using the 'configs' CLI option or by setting them to MOODLE_TOOL_ALLY_AUTO_CONFIGS
      * environment variable
+     *
+     * @return void
+     * @throws \coding_exception
      */
     public function test_resolve_noconfigs() {
         $this->expectException(\coding_exception::class);
@@ -79,6 +96,12 @@ class auto_config_resolver_test extends \advanced_testcase {
         $resolver->resolve();
     }
 
+    /**
+     * test resolve badconfigs
+     *
+     * @return void
+     * @throws \coding_exception
+     */
     public function test_resolve_badconfigs() {
         $this->expectException(\coding_exception::class);
         $this->expectExceptionMessage('Config string was not valid');

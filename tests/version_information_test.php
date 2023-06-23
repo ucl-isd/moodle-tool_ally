@@ -31,6 +31,11 @@ require_once(__DIR__.'/abstract_testcase.php');
 
 class version_information_test extends abstract_testcase {
 
+    /**
+     * test plugin not installed
+     *
+     * @return void
+     */
     public function test_plugin_not_intsalled() {
         $versioninfo = new version_information();
 

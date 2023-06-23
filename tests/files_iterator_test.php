@@ -44,6 +44,11 @@ require_once(__DIR__.'/abstract_testcase.php');
 class files_iterator_test extends abstract_testcase {
     /**
      * Test get_files.
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_get_files() {
         global $DB;
@@ -110,6 +115,14 @@ class files_iterator_test extends abstract_testcase {
         }
     }
 
+    /**
+     * test get files pathname
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
+     */
     public function test_get_files_pathname() {
         global $DB;
 
@@ -145,6 +158,8 @@ class files_iterator_test extends abstract_testcase {
 
     /**
      * Test get_files when there are no files to fetch.
+     *
+     * @return void
      */
     public function test_get_no_files() {
         $this->resetAfterTest();
@@ -158,6 +173,10 @@ class files_iterator_test extends abstract_testcase {
 
     /**
      * Test get_files using the since parameter.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_get_files_since() {
         global $DB;
@@ -206,6 +225,8 @@ class files_iterator_test extends abstract_testcase {
      *     there must be exactly one instance in course,
      *     it must support enrol_user() method.
      * @return bool success
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     private function unenrol_user($userid, $courseid, $enrol = 'manual') {
         global $DB;
@@ -224,6 +245,13 @@ class files_iterator_test extends abstract_testcase {
         return true;
     }
 
+    /**
+     * test white listing
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function test_white_listing() {
         global $DB;
 
@@ -265,8 +293,13 @@ class files_iterator_test extends abstract_testcase {
     }
 
     /**
+     * test role validation
+     *
      * Make sure a file created within a course of a whitelisted module is accessible when created by
      * someone with a teacher role but not when a student.
+     * @return void
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_role_validation() {
 
@@ -419,6 +452,11 @@ class files_iterator_test extends abstract_testcase {
 
     /**
      * Test records paging.
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_files_paging() {
         global $DB;
@@ -472,7 +510,11 @@ class files_iterator_test extends abstract_testcase {
     }
 
     /**
-     * Test using the iterator with validation disabled.
+     * Test using the iterator with validation disabled.\
+     *
+     * @return void
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_files_without_valid_filter() {
         $this->resetAfterTest();
@@ -532,6 +574,10 @@ class files_iterator_test extends abstract_testcase {
 
     /**
      * Test comparing curent and previous validators.
+     *
+     * @return void
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_all_valid_files() {
         $this->resetAfterTest();
@@ -623,6 +669,11 @@ class files_iterator_test extends abstract_testcase {
 
     /**
      * Test records paging using $CFG->tool_ally_optimize_iteration_for_db = true.
+     *
+     * @return void
+     * @throws \dml_exception
+     * @throws \file_exception
+     * @throws \stored_file_creation_exception
      */
     public function test_files_paging_optimized_for_db() {
         global $DB, $CFG;
@@ -677,6 +728,10 @@ class files_iterator_test extends abstract_testcase {
 
     /**
      * Basic testing of files being in use or not.
+     *
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function test_unused_files() {
         global $DB;
